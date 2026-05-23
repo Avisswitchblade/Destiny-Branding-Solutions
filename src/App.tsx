@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import SignageWebsite from './components/SignageWebsite';
 import SignageEstimator from './components/SignageEstimator';
-import PRDViewer from './components/PRDViewer';
 import { SystemLog } from './types';
 import {
   Sparkles,
@@ -25,7 +24,6 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [activeMode, setActiveMode] = useState<'website' | 'prd'>('website');
   const [systemLogs, setSystemLogs] = useState<SystemLog[]>([]);
   const [activeNotification, setActiveNotification] = useState<string | null>(null);
 
@@ -52,13 +50,10 @@ export default function App() {
 
   // Switch tabs and scroll smoothly to anchor points
   const handleScrollToEstimator = () => {
-    setActiveMode('website');
-    setTimeout(() => {
-      const el = document.getElementById('estimator-workspace');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+    const el = document.getElementById('estimator-workspace');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
@@ -92,36 +87,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Core mode toggle panels */}
-          <div className="flex bg-neutral-900 p-1 rounded-xl border border-white/10 max-w-full">
-            <button
-              onClick={() => setActiveMode('website')}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-mono transition-all ${
-                activeMode === 'website'
-                  ? 'bg-orange-600 font-bold text-white shadow-lg shadow-orange-600/20'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
-            >
-              <Monitor className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">1. Live Store</span> Website
-            </button>
-
-            <button
-              onClick={() => setActiveMode('prd')}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-mono transition-all ${
-                activeMode === 'prd'
-                  ? 'bg-amber-600 font-bold text-white shadow-lg shadow-amber-600/20'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">2. PRD &</span> Blueprints
-            </button>
-          </div>
-
           {/* Quick interactive phone and cost estimating headers */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="text-right text-xs">
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:block text-right text-xs">
               <span className="text-[9px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">NYAHURURU SALES</span>
               <a href="tel:0723408672" className="text-white hover:text-orange-500 font-bold block">0723 408 672</a>
             </div>
@@ -139,30 +107,22 @@ export default function App() {
 
       {/* MAIN VIEWPORT HYDRATION ROUTING */}
       <main className="min-h-[calc(100vh-4.5rem)]">
-        {activeMode === 'website' ? (
-          <div>
-            {/* 1. Standard Brand Website */}
-            <SignageWebsite
-              onOpenEstimator={handleScrollToEstimator}
-              onContactFormSubmitted={handleAddLog}
-            />
-
-            {/* 2. Embedded Realtime Estimator Block */}
-            <SignageEstimator
-              onQuoteSubmitted={handleAddLog}
-              onNavigateToContact={() => {
-                const el = document.getElementById('contact-showroom');
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-            />
-          </div>
-        ) : (
-          /* 3. Detailed PRD Dashboard Viewer & Live REST Clients Console */
-          <PRDViewer
-            systemLogs={systemLogs}
-            onClearLogs={() => setSystemLogs([])}
+        <div>
+          {/* 1. Standard Brand Website */}
+          <SignageWebsite
+            onOpenEstimator={handleScrollToEstimator}
+            onContactFormSubmitted={handleAddLog}
           />
-        )}
+
+          {/* 2. Embedded Realtime Estimator Block */}
+          <SignageEstimator
+            onQuoteSubmitted={handleAddLog}
+            onNavigateToContact={() => {
+              const el = document.getElementById('contact-showroom');
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+          />
+        </div>
       </main>
 
       {/* FOOTER METADATA MARGIN BLOCK */}
