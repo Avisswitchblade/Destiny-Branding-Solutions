@@ -132,6 +132,21 @@ export default function SignageEstimator({ onQuoteSubmitted, onNavigateToContact
     });
   }, [formData]);
 
+  // Respond to presets loaded dynamically from Customer Success Stories
+  useEffect(() => {
+    const handleLoadPreset = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail) {
+        setFormData(prev => ({
+          ...prev,
+          ...customEvent.detail,
+        }));
+      }
+    };
+    window.addEventListener('load-estimator-preset', handleLoadPreset);
+    return () => window.removeEventListener('load-estimator-preset', handleLoadPreset);
+  }, []);
+
   // Synchronize dynamic sample text inputs with character count
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const txt = e.target.value.toUpperCase();

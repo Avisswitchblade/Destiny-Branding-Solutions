@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import CustomerSuccessStories from './CustomerSuccessStories';
 import {
   Phone,
   MapPin,
@@ -375,6 +376,9 @@ export default function SignageWebsite({ onOpenEstimator, onContactFormSubmitted
 
         </div>
       </section>
+
+      {/* CUSTOMER SUCCESS STORIES CAROUSEL */}
+      <CustomerSuccessStories />
 
       {/* 5. NYAHURURU SHOWROOM MAP & GPS LANDMARKS */}
       <section id="contact-showroom" className="py-20 bg-neutral-950 px-4 sm:px-6 relative border-t border-neutral-900">
