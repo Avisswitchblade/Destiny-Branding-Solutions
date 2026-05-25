@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
     signType: 'Premium 3D Brass Channel Letters (LED Halo Backlit Overlay)',
     outcomeMetric: '+42% Night Footfall Increase',
     outcomeText: 'Replaced a generic signage board with customized liquid-cast polished heavy brass with halo LEDs.',
-    quote: "Destiny Creative's premium brass work completely changed our business profile. At night, our entire high-velocity showroom on the Laikipia highway glows with an architectural aura that has doubled our luxury spare sales.",
+    quote: "Destiny Branding Solutions's premium brass work completely changed our business profile. At night, our entire high-velocity showroom on the Laikipia highway glows with an architectural aura that has doubled our luxury spare sales.",
     accentColor: 'from-amber-500 to-orange-700',
     preset: {
       materials: 'brass',
@@ -75,7 +75,7 @@ const testimonials: Testimonial[] = [
     signType: 'Heavy duty 3D Stainless Steel Frontlit Letters on Alucobond',
     outcomeMetric: '100% Weatherproof Guarantee',
     outcomeText: 'Engineered a highly resilient high-exposure facade designed for harsh Nyahururu rainstorms.',
-    quote: "Our brand sits right next to the New Galana Station with extreme road dust and regular cloudbursts. After two full years, our stainless steel signs look as pristine and polished as the day Destiny Creative mounted them on our wall.",
+    quote: "Our brand sits right next to the New Galana Station with extreme road dust and regular cloudbursts. After two full years, our stainless steel signs look as pristine and polished as the day Destiny Branding Solutions mounted them on our wall.",
     accentColor: 'from-orange-500 to-yellow-500',
     preset: {
       materials: 'stainless_steel',
@@ -155,14 +155,14 @@ export default function CustomerSuccessStories() {
   };
 
   return (
-    <section id="success-stories" className="py-24 bg-neutral-950 border-t border-white/10 relative overflow-hidden">
+    <section id="success-stories" className="py-16 sm:py-24 bg-neutral-950 border-t border-white/10 relative overflow-hidden">
       {/* Subtle radial gradients overlaying dark modes */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none transition-all duration-700`} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 bg-neutral-950 border border-white/10 px-3 py-1.5 rounded-full">
             <Sparkles className="w-3.5 h-3.5 text-orange-500 animate-pulse" />
             <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400">IMPACT MATTERS</span>
@@ -176,7 +176,7 @@ export default function CustomerSuccessStories() {
         </div>
 
         {/* Carousel Workstation Wrapper */}
-        <div className="relative max-w-5xl mx-auto min-h-[460px] md:min-h-[400px] flex items-center justify-center">
+        <div className="relative max-w-5xl mx-auto min-h-[640px] sm:min-h-[520px] lg:min-h-[400px] flex items-center justify-center px-2 sm:px-0">
           
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -189,7 +189,7 @@ export default function CustomerSuccessStories() {
               className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
             >
               {/* Product Info / Metric Side Block */}
-              <div className="lg:col-span-5 flex flex-col justify-between bg-neutral-900/40 border border-white/5 rounded-2xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden text-left">
+              <div className="lg:col-span-5 flex flex-col justify-between bg-neutral-900/40 border border-white/5 rounded-2xl p-5 sm:p-8 backdrop-blur-sm relative overflow-hidden text-left">
                 {/* Visual accent bar */}
                 <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${current.accentColor}`} />
                 
@@ -224,7 +224,7 @@ export default function CustomerSuccessStories() {
               </div>
 
               {/* Textual Quote Body Side Block */}
-              <div className="lg:col-span-7 flex flex-col justify-between bg-neutral-900/20 border border-white/5 rounded-2xl p-6 sm:p-8 backdrop-blur-sm text-left">
+              <div className="lg:col-span-7 flex flex-col justify-between bg-neutral-900/20 border border-white/5 rounded-2xl p-5 sm:p-8 backdrop-blur-sm text-left">
                 <div className="space-y-6">
                   
                   {/* Verified badge + stars */}
@@ -241,7 +241,7 @@ export default function CustomerSuccessStories() {
 
                   {/* Quote text block */}
                   <div className="relative">
-                    <span className="absolute -top-10 -left-6 text-7xl text-white/5 font-serif select-none">“</span>
+                    <span className="absolute -top-10 -left-4 text-7xl text-white/5 font-serif select-none">“</span>
                     <p className="text-sm sm:text-base md:text-lg text-neutral-200 font-light leading-relaxed italic relative z-10 font-sans">
                       {current.quote}
                     </p>
@@ -272,7 +272,7 @@ export default function CustomerSuccessStories() {
           {/* Left Arrow Button */}
           <button
             onClick={handlePrev}
-            className="absolute -left-4 sm:-left-12 lg:-left-16 w-10 h-10 rounded-full bg-neutral-900/80 border border-white/10 hover:border-orange-500/30 flex items-center justify-center text-white/70 hover:text-white hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer shadow-lg backdrop-blur"
+            className="absolute left-1 sm:-left-12 lg:-left-16 w-10 h-10 rounded-full bg-neutral-900/80 border border-white/10 hover:border-orange-500/30 flex items-center justify-center text-white/70 hover:text-white hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer shadow-lg backdrop-blur"
             title="Previous Story"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -281,7 +281,7 @@ export default function CustomerSuccessStories() {
           {/* Right Arrow Button */}
           <button
             onClick={handleNext}
-            className="absolute -right-4 sm:-right-12 lg:-right-16 w-10 h-10 rounded-full bg-neutral-900/80 border border-white/10 hover:border-orange-500/30 flex items-center justify-center text-white/70 hover:text-white hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer shadow-lg backdrop-blur"
+            className="absolute right-1 sm:-right-12 lg:-right-16 w-10 h-10 rounded-full bg-neutral-900/80 border border-white/10 hover:border-orange-500/30 flex items-center justify-center text-white/70 hover:text-white hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer shadow-lg backdrop-blur"
             title="Next Story"
           >
             <ChevronRight className="w-5 h-5" />

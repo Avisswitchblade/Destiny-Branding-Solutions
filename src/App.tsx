@@ -91,30 +91,33 @@ export default function App() {
       </a>
 
       {/* STICKY GLASSMORPHIC HEADER */}
-      <header className="sticky top-0 z-50 w-full bg-neutral-950/80 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between">
+      <header className="sticky top-0 z-50 w-full bg-neutral-950/80 backdrop-blur-md border-b border-white/10 h-16 sm:h-18 flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between">
           
-          {/* Logo Brand Design with Immersive UI Gradient Badge */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 via-yellow-500 to-orange-700 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-transform hover:scale-105">
-              <span className="font-black text-neutral-950 text-xl italic font-sans select-none">DC</span>
-            </div>
+          {/* Logo Brand Design with Immersive UI 3D Logo */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <img 
+              src="/src/assets/images/destiny_logo_1779650336177.png" 
+              alt="Destiny Branding Solutions" 
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain rounded-full border border-orange-500/10 shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:scale-110 transition-transform shrink-0 select-none animate-fade-in"
+              referrerPolicy="no-referrer"
+            />
             <div className="leading-none text-left">
-              <h1 className="font-bold tracking-tighter text-sm uppercase text-white">Destiny Creative</h1>
-              <p className="text-[10px] text-orange-500 uppercase tracking-widest font-bold">Branding Solutions</p>
+              <h1 className="font-bold tracking-tighter text-xs sm:text-sm uppercase text-white">DESTINY BRANDING SOLUTIONS</h1>
+              <p className="text-[8px] sm:text-[10px] text-orange-500 uppercase tracking-widest font-bold">Premium Branding & Signage</p>
             </div>
           </div>
 
           {/* Quick interactive phone and cost estimating headers */}
-          <div className="flex items-center gap-6">
-            <div className="hidden sm:block text-right text-xs">
+          <div className="flex items-center gap-3 sm:gap-6">
+            <div className="hidden md:block text-right text-xs">
               <span className="text-[9px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">NYAHURURU SALES</span>
               <a href="tel:0723408672" className="text-white hover:text-orange-500 font-bold block">0723 408 672</a>
             </div>
             
             <button
               onClick={handleScrollToEstimator}
-              className="bg-orange-600 hover:bg-orange-500 text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-tighter shadow-lg shadow-orange-600/20 transition-all cursor-pointer"
+              className="bg-orange-600 hover:bg-orange-500 text-white px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-tighter shadow-lg shadow-orange-600/20 transition-all cursor-pointer whitespace-nowrap"
             >
               Get a Quote
             </button>
@@ -149,7 +152,12 @@ export default function App() {
           
           <div className="text-center md:text-left space-y-1.5">
             <div className="flex items-center justify-center md:justify-start gap-2 text-white font-bold">
-              <div className="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse" />
+              <img 
+                src="/src/assets/images/destiny_logo_1779650336177.png" 
+                alt="Destiny Branding Solutions Logo" 
+                className="w-6 h-6 object-contain rounded-full shadow-[0_0_8px_rgba(249,115,22,0.3)] shrink-0"
+                referrerPolicy="no-referrer"
+              />
               <span>DESTINY BRANDING SOLUTIONS</span>
             </div>
             <p className="max-w-md text-neutral-500">

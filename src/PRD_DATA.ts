@@ -40,7 +40,7 @@ export const SITEMAP_DATA: SitemapPage[] = [
       },
       {
         name: "MainHeroShowcase",
-        description: "Ultra-wide, cinematic brand banner containing the glowing golden-orange Destiny Creative logo ring.",
+        description: "Ultra-wide, cinematic brand banner containing the glowing golden-orange Destiny Branding Solutions logo ring.",
         props: ["openEstimator"],
         purpose: "Anchor the visual tone (Infinix-inspired) and drive quick quote click-throughs."
       },
@@ -132,7 +132,7 @@ export const SITEMAP_DATA: SitemapPage[] = [
 export const HOMEPAGE_SECTIONS: WebSection[] = [
   {
     title: "1. Cinematic Brand Header & Sticky Glassmorphic Nav",
-    copywritingHook: "Logo: 'Destiny Creative' (3D Metallic orange/gold wireframe ring in constant orbital movement).",
+    copywritingHook: "Logo: 'Destiny Branding Solutions' (3D Metallic orange/gold wireframe ring in constant orbital movement).",
     visualObjective: "Transmit immediate premium quality. The logo is not a flat image but feels sculptural. Glassmorphism navigation creates depth as it scrolls over background image glows.",
     tailwindClasses: ["fixed", "top-0", "w-full", "z-50", "backdrop-blur-md", "bg-neutral-950/70", "border-b", "border-neutral-800/60", "transition-all"],
     conversionTrigger: "Direct Call-to-action button: 'Quick Quote' (Vibrant Orange `#f97316`) glowing on dark background.",
@@ -178,7 +178,7 @@ export const SEO_METADATA_STRATEGY = {
   keywords: [
     "3D signage Nyahururu",
     "2D signage Kenya",
-    "Destiny Creative Nyahururu",
+    "Destiny Branding Solutions Nyahururu",
     "Sign board makers in Nyahururu",
     "Branded t-shirts Nyahururu",
     "Hoodie screen printing Nyahururu",

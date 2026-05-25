@@ -74,7 +74,7 @@ export default function SignageWebsite({ onOpenEstimator, onContactFormSubmitted
           success: true,
           referenceId: `MSG-${Math.floor(1000 + Math.random() * 9000)}`,
           message: "Contact message stored successfully. Whatsapp alert dispatched to Nyahururu admins.",
-          deliveryRecipient: "Destiny Creative Team"
+          deliveryRecipient: "Destiny Branding Solutions Team"
         }, null, 2),
       };
 
@@ -113,6 +113,23 @@ export default function SignageWebsite({ onOpenEstimator, onContactFormSubmitted
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 text-center z-10 space-y-8">
           
+          {/* Centered grand brand logo icon with golden 3D metallic aesthetics */}
+          <div className="flex justify-center mb-2 animate-fade-in">
+            <div className="relative group">
+              {/* Outer double glowing ring of light */}
+              <div className="absolute inset-[-6px] bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full blur-xl opacity-30 group-hover:opacity-55 group-hover:inset-[-8px] transition-all duration-500"></div>
+              {/* Glowing aura */}
+              <div className="absolute inset-0 bg-neutral-950 rounded-full border border-orange-500/35 shadow-[0_0_80px_rgba(249,115,22,0.45)]"></div>
+              
+              <img 
+                src="/src/assets/images/destiny_logo_1779650336177.png" 
+                alt="Destiny Branding Solutions 3D Logo" 
+                className="w-28 h-28 sm:w-36 sm:h-36 object-contain rounded-full border-2 border-white/10 relative z-10 shadow-2xl transition-all duration-500 group-hover:scale-105 select-none"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
           {/* Slogan pill tag */}
           <div className="mb-6 inline-flex items-center gap-2 bg-neutral-950 border border-white/10 px-3 py-1.5 rounded-full mx-auto animate-fade-in">
             <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>

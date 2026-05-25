@@ -543,7 +543,7 @@ export default function SignageEstimator({ onQuoteSubmitted, onNavigateToContact
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Controls Column (lg:col-span-4) */}
-            <div className="lg:col-span-5 bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-6 backdrop-blur-sm space-y-6">
+            <div className="lg:col-span-5 bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-6 backdrop-blur-sm space-y-6 order-2 lg:order-1">
               <div className="flex items-center gap-2 pb-4 border-b border-neutral-800">
                 <Sliders className="w-5 h-5 text-orange-500" />
                 <h3 className="text-lg font-bold text-white font-sans">Craft Options</h3>
@@ -714,7 +714,7 @@ export default function SignageEstimator({ onQuoteSubmitted, onNavigateToContact
             </div>
 
             {/* Right Interactive Preview & Pricing (lg:col-span-8) */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
               
               {/* Live Canvas Box */}
               <div className="bg-neutral-950 border border-neutral-900 rounded-2xl overflow-hidden shadow-lg relative">
