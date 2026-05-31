@@ -90,7 +90,7 @@ export default function HeroSection({ onOpenEstimator }: HeroSectionProps) {
             <p className="text-xs text-neutral-400">Next to New Galana Petrol Station</p>
           </div>
           <div className="space-y-1">
-            <span className="text-[10px] font-mono text-neutral-500 uppercase">CAL THE DIRECTOR</span>
+            <span className="text-[10px] font-mono text-neutral-500 uppercase">CALL THE DIRECTOR</span>
             <p className="text-xs text-orange-400 font-semibold">0723 408 672 | 0721 691 511</p>
           </div>
           <div className="space-y-1">
