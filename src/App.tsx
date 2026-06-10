@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import SignageWebsite from './components/SignageWebsite';
 import SignageEstimator from './components/SignageEstimator';
 import { SystemLog } from './types';
+import { generateXMLSitemap, getSitemapDataUri } from './utils/sitemap';
 import {
   Sparkles,
   Terminal,
@@ -23,10 +25,43 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+interface SEOConfig {
+  title: string;
+  description: string;
+  canonical: string;
+  ogTitle: string;
+  ogDescription: string;
+}
+
+const SEO_SECTIONS: Record<'home' | 'services' | 'contact', SEOConfig> = {
+  home: {
+    title: "Destiny Branding Solutions | Premium 3D Signage Kenya & LED Backlit Signs",
+    description: "Destiny Branding Solutions: Premier 3D & 2D outdoor signage, custom-milled brass letters, apparel screen-printing, and sandblast window film solutions in Nyahururu, Kenya.",
+    canonical: "https://destinybranding.co.ke/",
+    ogTitle: "Destiny Branding Solutions - Premium Signage & Branding Kenya",
+    ogDescription: "Transform your storefront with premium 3D/2D LED backlit signs, custom uniforms, safety warning boards, and window frosted films in Kenya."
+  },
+  services: {
+    title: "Commercial 3D Backlit Lettering & Windows Glass Film Services Kenya | Destiny",
+    description: "Custom architectural 3D acrylic signs, steel backlit signs, frosted office glass films, and high-fidelity branded apparel crafted with professional precision in Kenya.",
+    canonical: "https://destinybranding.co.ke/#services",
+    ogTitle: "Destiny Branding Services | 3D LED Signboards & Apparel Printing",
+    ogDescription: "Discover premium 3D/2D commercial signs, corporate t-shirt screen-printing/embroidery, and Frosted Glass UV block films."
+  },
+  contact: {
+    title: "Contact Destiny Branding Nyahururu Showroom | Call 0723408672",
+    description: "Contact our Kenya signage fabrication studio. Address: Pondo Park Building near New Galana Petrol Station, Nyahururu. WhatsApp details or call now for instant quote.",
+    canonical: "https://destinybranding.co.ke/#contact",
+    ogTitle: "Get a Custom Signage Quote | Contact Destiny Branding Kenya",
+    ogDescription: "Visit our Nyahururu showroom at Pondo Park Building or message our design engineers for premium high-visibility storefront quotes."
+  }
+};
+
 export default function App() {
   const [systemLogs, setSystemLogs] = useState<SystemLog[]>([]);
   const [activeNotification, setActiveNotification] = useState<string | null>(null);
   const [isWhatsAppMinimized, setIsWhatsAppMinimized] = useState(false);
+  const [activeSection, setActiveSection] = useState<'home' | 'services' | 'contact'>('home');
 
   // Auto-clear notification after delay
   useEffect(() => {
@@ -39,7 +74,7 @@ export default function App() {
   }, [activeNotification]);
 
   // Hook new action dispatches to system simulator log lists
-  const handleAddLog = (newLog: SystemLog) => {
+  const handleAddLog = useCallback((newLog: SystemLog) => {
     setSystemLogs(prev => [newLog, ...prev]);
     
     if (newLog.type === 'outgoing') {
@@ -47,7 +82,104 @@ export default function App() {
     } else if (newLog.type === 'success') {
       setActiveNotification(`[SUCCESS] Simulated 200 OK received from ${newLog.url}!`);
     }
-  };
+  }, []);
+
+  // Dynamic Sitemap Generation Simulation
+  useEffect(() => {
+    const sitemapXml = generateXMLSitemap();
+    handleAddLog({
+      id: Math.random().toString(),
+      timestamp: new Date().toISOString(),
+      type: 'success',
+      method: "SITEMAP: COMPILE",
+      url: "/sitemap.xml",
+      response: JSON.stringify({
+        status: "200 Dynamic XML Generated Successfully",
+        xml_metadata_engine: "Nyahururu Local Crawler Helper V2",
+        links_discovered: 6,
+        domain_mapping: "https://destinybranding.co.ke",
+        locations: [
+          "/",
+          "/#hero",
+          "/#flagship-signage",
+          "/#other-branding-services",
+          "/#estimator-workspace",
+          "/#contact-showroom"
+        ],
+        raw_xml_sample: sitemapXml.substring(0, 150) + "..."
+      }, null, 2)
+    });
+  }, [handleAddLog]);
+
+  // Dynamic Section Detection for SEO Metadata Updates
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '-10% 0px -40% 0px', // slightly offset trigger zones for pleasant responsive updates
+      threshold: [0, 0.1, 0.3],
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      const visibleEntries = entries.filter(e => e.isIntersecting);
+      if (visibleEntries.length === 0) return;
+
+      visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      const topEntry = visibleEntries[0];
+
+      const id = topEntry.target.id;
+      let sectionDetect: 'home' | 'services' | 'contact' | null = null;
+      if (id === 'hero') {
+        sectionDetect = 'home';
+      } else if (
+        id === 'flagship-signage' ||
+        id === 'other-branding-services' ||
+        id === 'estimator-workspace'
+      ) {
+        sectionDetect = 'services';
+      } else if (id === 'contact-showroom') {
+        sectionDetect = 'contact';
+      }
+
+      if (sectionDetect) {
+        setActiveSection(prev => {
+          if (prev !== sectionDetect) {
+            const currentSEO = SEO_SECTIONS[sectionDetect!];
+            handleAddLog({
+              id: Math.random().toString(),
+              timestamp: new Date().toISOString(),
+              type: 'success',
+              method: `SEO INDEX: ${sectionDetect?.toUpperCase()}`,
+              url: `/seo/metadata/#${sectionDetect}`,
+              response: JSON.stringify({
+                active_section: sectionDetect,
+                injected_title: currentSEO.title,
+                canonical_link: currentSEO.canonical,
+                meta_description: currentSEO.description,
+                status: "Hoisted via React Helmet Successfully"
+              }, null, 2)
+            });
+          }
+          return sectionDetect!;
+        });
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, options);
+
+    const targets = [
+      document.getElementById('hero'),
+      document.getElementById('flagship-signage'),
+      document.getElementById('other-branding-services'),
+      document.getElementById('estimator-workspace'),
+      document.getElementById('contact-showroom'),
+    ].filter(Boolean) as HTMLElement[];
+
+    targets.forEach(target => observer.observe(target));
+
+    return () => {
+      targets.forEach(target => observer.unobserve(target));
+    };
+  }, [handleAddLog]);
 
   // Switch tabs and scroll smoothly to anchor points
   const handleScrollToEstimator = () => {
@@ -58,7 +190,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030303] text-neutral-200">
+    <HelmetProvider>
+      <div className="min-h-screen bg-[#030303] text-neutral-200">
+        <Helmet>
+          <title>{SEO_SECTIONS[activeSection].title}</title>
+          <meta name="description" content={SEO_SECTIONS[activeSection].description} />
+          <link rel="canonical" href={SEO_SECTIONS[activeSection].canonical} />
+          <meta property="og:title" content={SEO_SECTIONS[activeSection].ogTitle} />
+          <meta property="og:description" content={SEO_SECTIONS[activeSection].ogDescription} />
+          <meta property="og:url" content={SEO_SECTIONS[activeSection].canonical} />
+          <meta property="og:type" content="website" />
+        </Helmet>
       
       {/* GLOBAL HUD SYSTEM NOTIFICATIONS */}
       {activeNotification && (
@@ -148,6 +290,12 @@ export default function App() {
 
           {/* Quick interactive phone and cost estimating headers */}
           <div className="flex items-center gap-3 sm:gap-6">
+            <div className="hidden lg:flex items-center gap-2 border border-neutral-800 bg-neutral-900/50 px-2.5 py-1 rounded-full text-[10px] font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-neutral-400">SEO:</span>
+              <span className="text-orange-400 font-bold uppercase">{activeSection}</span>
+            </div>
+            
             <div className="hidden md:block text-right text-xs">
               <span className="text-[9px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">NYAHURURU SALES</span>
               <a href="tel:0723408672" className="text-white hover:text-orange-500 font-bold block">0723 408 672</a>
@@ -203,15 +351,27 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-neutral-500 font-mono text-[10px]">
+          <div className="flex flex-wrap justify-center gap-6 text-neutral-500 font-mono text-[10px] relative">
             <span>TEL: 0723408672 / 0721691511</span>
             <span>MON-SAT: 8:00 AM - 6:00 PM</span>
             <span>&copy; {new Date().getFullYear()} DST DESIGN LABS</span>
+            
+            {/* Dynamic Sitemap Link: visually hidden but fully indexed by search engines to optimize organic index crawlability */}
+            <a 
+              href="/sitemap.xml" 
+              className="absolute opacity-0 w-1 h-1 overflow-hidden pointer-events-none select-none text-[1px]" 
+              tabIndex={-1} 
+              aria-hidden="true"
+              id="dynamic-sitemap-hidden-anchor"
+            >
+              Destiny Signage Kenya XML Sitemap Index
+            </a>
           </div>
 
         </div>
       </footer>
 
-    </div>
+      </div>
+    </HelmetProvider>
   );
 }

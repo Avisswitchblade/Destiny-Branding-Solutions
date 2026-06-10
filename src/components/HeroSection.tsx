@@ -48,7 +48,7 @@ export default function HeroSection({ onOpenEstimator }: HeroSectionProps) {
         {/* Slogan pill tag */}
         <div className="mb-6 inline-flex items-center gap-2 bg-neutral-950 border border-white/10 px-3 py-1.5 rounded-full mx-auto animate-fade-in">
           <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
-          <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400">Flagship 3D Signage</span>
+          <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400">Flagship Product Signage</span>
         </div>
 
         {/* Epic Main Headline matching Immersive UI font weights */}
@@ -58,7 +58,7 @@ export default function HeroSection({ onOpenEstimator }: HeroSectionProps) {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-500">VISIBILITY.</span>
           </h1>
           <p className="max-w-2xl mx-auto text-sm sm:text-base text-neutral-400 leading-relaxed font-light font-sans pt-2">
-            We engineer premium 3D and 2D outdoor signage, high-fidelity T-Shirt printing, window films, vehicle branding and complete branding solutions.
+            We engineer premium 3D and 2D outdoor signage, high-fidelity apparel screen-printing, window films, and complete branding solutions out of Nyahururu, Kenya.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function HeroSection({ onOpenEstimator }: HeroSectionProps) {
             <p className="text-xs text-neutral-400">Next to New Galana Petrol Station</p>
           </div>
           <div className="space-y-1">
-            <span className="text-[10px] font-mono text-neutral-500 uppercase">CALL THE DIRECTOR</span>
+            <span className="text-[10px] font-mono text-neutral-500 uppercase">FAST DIRECT DIAL</span>
             <p className="text-xs text-orange-400 font-semibold">0723 408 672 | 0721 691 511</p>
           </div>
           <div className="space-y-1">
